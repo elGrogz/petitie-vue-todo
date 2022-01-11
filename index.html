@@ -2,14 +2,22 @@
 <html>
   <head>
     <title>Petite Vue Todo</title>
-    <script src="https://unpkg.com/petite-vue" defer init></script>
+    <script type="module">
+      import { createApp } from 'https://unpkg.com/petite-vue?module'
+      createApp({
+        todoListName: "",
+        setTodoListName(text) {
+          this.todoListName = text;
+        },
+      }).mount()
+    </script>
   </head>
   <body>
-    <p>Let's make a todo!</p>
-    <div v-scope="{ todo-list-name: '' }">
-      <!-- <div v-effect="$el.textContent = count"></div> -->
-      <p>{{ todo-list-name }}</p>
-      // <input v-model="" /> // <button @click="count++">++</button>
+      <div v-scope="{todoListName: ''}">
+        <input v-model="todoListName" placeholder="Todo List title" />
+        <button @click="setTodoListName">Update</button>
+        <p></p>
+      </div>
     </div>
   </body>
 </html>
